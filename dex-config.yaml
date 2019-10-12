@@ -1,0 +1,30 @@
+issuer: https://104.199.135.231:5556/dex
+storage:
+  type: kubernetes
+  config:
+    inCluster: true
+web:
+  http: 0.0.0.0:5556
+oauth2:
+  skipApprovalScreen: true
+enablePasswordDB: true
+
+staticPasswords:
+- email: jayce.weng@clustar.ai
+  # BCrypt Hash
+  hash: "$2a$13$6OFcNPb4HbIYupzeY2MzfeaC.OsK5FQUDYFedV2k46YTyN38mwkZC"
+  username: jayce.weng
+  userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+
+staticClients:
+- id: kubeflow-authservice-oidc
+  redirectURIs:
+  # After authenticating and giving consent, dex will redirect to
+  # this url for the specific client.
+  - https://104.199.135.231/login/oidc
+  name: 'Kubeflow AuthService OIDC'
+  secret: thkQH6OdHJVW3CjipfLpBWfERgVZ5UuS 
+# Options for controlling the logger.
+logger:
+  level: "debug"
+  format: "text"
